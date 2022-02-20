@@ -10,8 +10,8 @@ int main() {
     while (cin >> x) {
         arr.push_back(x);
     }
-    vector<int> ans;
 
+    vector<int> ans;
     vector<int> s(arr);
     sort(s.begin(), s.end());
 
