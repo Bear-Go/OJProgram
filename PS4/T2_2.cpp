@@ -4,8 +4,7 @@
 using namespace std;
 
 int n, a[N][N], dp[N][1 << N], ans = inf;
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 0; i < n; ++ i)
         for (int j = 0; j < n; ++ j)
