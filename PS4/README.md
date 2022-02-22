@@ -1,3 +1,3 @@
-#Problem Solving OJ
+Problem Solving OJ
 
 Week1 ✔
