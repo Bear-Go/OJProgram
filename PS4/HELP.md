@@ -7,3 +7,8 @@ Thus, we begin by going over the text, and constructing the graph. We can store 
 This, will run, in time, O(n log(n)), where n, is the size, of the input, which, is, fast, enough.
 https://www.youtube.com/watch?v=e6PXYpEU3n0
 
+###Week2
+Majority 3-SAT
+此问题可转化成2-SAT问题，然后借助强连通分量算法求解
+c++ std vector 内存回收
+
