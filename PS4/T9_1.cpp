@@ -1,45 +1,50 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
-int A[1005];
+const int MAXN = 100005;
 
-// naive solution O(n^2)
-int main() {
+int n, m;
+int A[MAXN], ans[MAXN];
+
+struct node
+{
+    int op, pos, id;
+    bool operator < (const node &other) const {return pos > other.pos;}
+} q[MAXN];
+
+set<pair<int,int>> s;
+
+int main ()
+{
     cin >> n >> m;
     for (int i = 1; i <= n; ++i) cin >> A[i];
     for (int i = 1; i <= m; ++i) {
-        int choice, p;
-        cin >> choice >> p;
-        int val = A[p];
-        if (choice == 0) {
-            int min_A = INT_MAX;
-            int q = p;
-            for (int j = p + 1; j <= n; ++j) {
-                if (A[j] >= val) {
-                    if (A[j] < min_A) {
-                        min_A = A[j];
-                        q = j;
-                    }
-                }
+        cin >> q[i].op >> q[i].pos;
+        q[i].id=i;
+    }
+    sort(q + 1, q + m + 1);
+    int ptr = n;
+    for (int i = 1; i <= m; ++i) {
+        while (ptr > q[i].pos) {
+            set<pair<int, int>>::iterator iter = s.lower_bound(make_pair(A[ptr], ptr));
+            if (iter != s.end() && iter->first == A[ptr]) s.erase(iter);
+            s.insert(make_pair(A[ptr], ptr));
+            ptr--;
+        }
+        set<pair<int, int>>::iterator iter = s.lower_bound(make_pair(A[q[i].pos], q[i].pos));
+        if (q[i].op == 0) {
+            if (iter!=s.end()) ans[q[i].id] = iter->second;
+            else ans[q[i].id] = -1;
+        }
+        else {
+            if (iter != s.end() && iter->first == A[q[i].pos]) ans[q[i].id] = iter->second;
+            else if (iter == s.begin()) ans[q[i].id] = -1;
+            else {
+                --iter;
+                ans[q[i].id] = iter->second;
             }
-            if (q == p) cout << -1 << endl;
-            else cout << q << endl;
-        } else {
-            int max_A = INT_MIN;
-            int q = p;
-            for (int j = p + 1; j <= n; ++j) {
-                if (A[j] <= val) {
-                    if (A[j] > max_A) {
-                        max_A = A[j];
-                        q = j;
-                    }
-                }
-            }
-            if (q == p) cout << -1 << endl;
-            else cout << q << endl;
         }
     }
+    for (int i = 1; i <= m; ++i) cout << ans[i] << endl;
     return 0;
 }
