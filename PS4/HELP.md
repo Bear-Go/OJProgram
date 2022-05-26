@@ -15,4 +15,3 @@ c++ std vector 内存回收
 ### Week4
 A. $$\mathop{\arg\max}\limits_{(x,y)} \sum_{i=1}^n{\abs{x-x_i}+\abs{y-y_i}}$$
 
-B.
