@@ -23,7 +23,7 @@ $(eval $(NAME):;@:)
 
 new:
 	mkdir $(NAME)
-	cp -r ../Module/* $(NAME)/
+	cp -r ../module/* $(NAME)/
 
 clean:
 	rm -rf $(NAME)/
